@@ -5,11 +5,9 @@ import br.com.fiap.mspedido.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -29,5 +27,10 @@ public class PedidoController {
         catch (NoSuchElementException e){
             return new ResponseEntity<>("Um ou mais produtos não estão disponíveis.", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping
+    public List<Pedido> listarPedido(){
+        return pedidoService.listarPedido();
     }
 }
